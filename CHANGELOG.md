@@ -6,7 +6,14 @@
 - 이메일 자동 배송 기능
 - 리포트 아카이브 및 검색
 - 에러 처리 및 재시도 로직
-- `briefing-improver` 통합 스킬 (project-audit → issue-resolver → doc-optimizer)
+
+---
+
+## [0.4.0] - 2026-06-11
+
+### 추가
+- `briefing-improver` 통합 스킬 — project-audit → issue-resolver → doc-optimizer 순차 실행
+- `auto-improve` 루프 스킬 — 이슈 0건이 될 때까지 briefing-improver 반복 실행
 
 ---
 
