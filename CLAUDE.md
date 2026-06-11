@@ -35,3 +35,4 @@
 | 리포트 백업해줘 | `backup-restore-manager` |
 | 프로젝트 문서 생성해줘 | `documentation-generator` |
 | 전체 개선 사이클 돌려줘 | `briefing-improver` |
+| 이슈 없을 때까지 개선해줘 | `auto-improve` |
