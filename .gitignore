@@ -1,0 +1,47 @@
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# 임시 파일
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*~
+
+# 환경 변수 / 비밀키
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+secrets.json
+
+# 설정 로컬 오버라이드
+config.local.json
+
+# Node.js (혹시 의존성 추가될 경우)
+node_modules/
+npm-debug.log*
+
+# Python (혹시 스크립트 추가될 경우)
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+.venv/
+
+# IDE
+.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# 보관용 로컬 백업 (영구 저장소는 별도)
+backup_local/

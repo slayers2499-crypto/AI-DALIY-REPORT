@@ -1,0 +1,40 @@
+{
+  "search_keywords": [
+    "AI news today 2026",
+    "LLM large language model update",
+    "generative AI enterprise 2026",
+    "AI 인공지능 뉴스 최신",
+    "OpenAI Google Anthropic Meta AI"
+  ],
+  "language": "ko",
+  "num_articles": 7,
+  "storage_path": "C:\\Temp\\AI-DALIY-REPORT",
+  "permanent_storage_path": "C:\\Users\\Admin\\Documents\\AI-Reports",
+  "report_style": {
+    "primary_color": "#2563EB",
+    "theme": "light"
+  },
+  "timezone": "Asia/Seoul",
+  "schedule": {
+    "cron": "0 8 * * *",
+    "description": "매일 오전 8시 (KST)"
+  },
+  "report_recipients": [],
+  "trusted_sources": [
+    "techcrunch.com",
+    "reuters.com",
+    "axios.com",
+    "theverge.com",
+    "wired.com",
+    "anthropic.com",
+    "openai.com",
+    "deepmind.google",
+    "zdnet.com",
+    "venturebeat.com"
+  ],
+  "max_article_age_days": 7,
+  "retry": {
+    "max_attempts": 3,
+    "backoff_seconds": 5
+  }
+}
