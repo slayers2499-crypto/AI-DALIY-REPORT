@@ -2,10 +2,7 @@
 
 ## 시스템 요구사항
 
-- Windows 10/11
-- [Claude Code](https://claude.ai/code) 설치 및 로그인
-- GitHub CLI (`gh`) 설치 및 인증
-- Git 설치
+→ [DEPENDENCIES.md](DEPENDENCIES.md) 참조
 
 ## 초기 설치
 
