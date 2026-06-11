@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Daily Intelligence Report — 2026.06.11</title>
+  <style>
+    :root {
+      --blue: #2563EB;
+      --blue-light: #EFF6FF;
+      --blue-mid: #BFDBFE;
+      --dark: #111827;
+      --gray: #6B7280;
+      --gray-light: #F9FAFB;
+      --border: #E5E7EB;
+      --green: #059669;
+      --orange: #D97706;
+      --red: #DC2626;
+      --purple: #7C3AED;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+      background: #F3F4F6;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #1E3A8A 0%, var(--blue) 100%);
+      color: white;
+      padding: 36px 40px 28px;
+    }
+    .header-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+    .header-badge {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .header h1 { font-size: 26px; font-weight: 700; margin-top: 12px; }
+    .header p  { font-size: 14px; opacity: 0.8; margin-top: 4px; }
+    .header-date { font-size: 13px; opacity: 0.75; text-align: right; }
+
+    /* ── Layout ── */
+    .container { max-width: 1000px; margin: 0 auto; padding: 32px 20px 60px; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 36px; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--blue);
+    }
+    .section-icon {
+      width: 32px; height: 32px;
+      background: var(--blue);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 16px; flex-shrink: 0;
+    }
+    .section-title { font-size: 18px; font-weight: 700; color: var(--blue); }
+    .section-sub   { font-size: 12px; color: var(--gray); margin-left: auto; }
+
+    /* ── Executive Summary ── */
+    .exec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+    .exec-card {
+      background: white;
+      border-left: 4px solid var(--blue);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 18px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .exec-card .num {
+      font-size: 11px; font-weight: 700; color: var(--blue);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;
+    }
+    .exec-card strong { font-size: 15px; font-weight: 700; display: block; margin-bottom: 6px; }
+    .exec-card p { font-size: 13px; color: #374151; }
+
+    /* ── News Cards ── */
+    .news-grid { display: grid; gap: 14px; }
+    .news-card {
+      background: white;
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+    .news-meta { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+    .news-tag {
+      font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px;
+      background: var(--blue-light); color: var(--blue);
+    }
+    .news-source { font-size: 11px; color: var(--gray); }
+    .news-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
+    .news-card p  { font-size: 13px; color: #374151; margin-bottom: 10px; }
+    .implication {
+      background: #F0FDF4;
+      border-left: 3px solid var(--green);
+      border-radius: 0 6px 6px 0;
+      padding: 8px 12px;
+      font-size: 12px; color: #166534;
+    }
+    .implication strong { display: inline; }
+
+    /* ── Trend Cards ── */
+    .trend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+    .trend-card {
+      background: white; border-radius: 12px; padding: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      border-top: 3px solid var(--purple);
+    }
+    .trend-label {
+      font-size: 11px; font-weight: 700; color: var(--purple);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px;
+    }
+    .trend-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+    .trend-card .evidence { font-size: 12px; color: var(--gray); margin-bottom: 10px; }
+    .trend-card .signal {
+      font-size: 12px; background: #F5F3FF; color: #4C1D95;
+      border-radius: 6px; padding: 8px 10px;
+    }
+
+    /* ── Tech Table ── */
+    .tech-grid { display: grid; gap: 12px; }
+    .tech-card {
+      background: white; border-radius: 12px; padding: 16px 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+    }
+    .tech-logo {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; background: var(--gray-light); flex-shrink: 0;
+    }
+    .tech-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .tech-card .company { font-size: 11px; color: var(--gray); margin-bottom: 6px; }
+    .tech-card p { font-size: 13px; color: #374151; }
+    .badge {
+      display: inline-block; font-size: 10px; font-weight: 600;
+      padding: 2px 7px; border-radius: 8px; margin-right: 4px; margin-top: 4px;
+    }
+    .badge-new { background: #FEF3C7; color: #92400E; }
+    .badge-hot { background: #FEE2E2; color: #991B1B; }
+    .badge-open { background: #D1FAE5; color: #065F46; }
+
+    /* ── Market ── */
+    .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+    .market-card {
+      background: white; border-radius: 12px; padding: 18px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      border-top: 3px solid var(--orange);
+    }
+    .market-card .category {
+      font-size: 11px; font-weight: 700; color: var(--orange);
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .market-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .market-card p { font-size: 13px; color: #374151; }
+    .stat-row { display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat .val { font-size: 20px; font-weight: 800; color: var(--blue); }
+    .stat .lbl { font-size: 10px; color: var(--gray); }
+
+    /* ── Strategic Implications ── */
+    .implication-list { display: grid; gap: 12px; }
+    .impl-item {
+      background: white; border-radius: 12px; padding: 18px 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: start;
+    }
+    .impl-num {
+      width: 28px; height: 28px; background: var(--blue); color: white;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+    }
+    .impl-item h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .impl-item p  { font-size: 13px; color: #374151; }
+    .urgency {
+      display: inline-block; margin-top: 6px; font-size: 11px; font-weight: 600;
+      padding: 2px 8px; border-radius: 8px;
+    }
+    .urgency-high   { background: #FEE2E2; color: #991B1B; }
+    .urgency-medium { background: #FEF3C7; color: #92400E; }
+    .urgency-low    { background: #D1FAE5; color: #065F46; }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--dark); color: #9CA3AF; text-align: center;
+      padding: 20px; font-size: 12px;
+    }
+    .footer strong { color: white; }
+
+    @media (max-width: 600px) {
+      .header { padding: 24px 20px 20px; }
+      .header h1 { font-size: 20px; }
+      .container { padding: 20px 14px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════ HEADER ════════════════════════════════ -->
+<div class="header">
+  <div class="header-top">
+    <span class="header-badge">AI Daily Intelligence Report</span>
+    <div class="header-date">
+      2026년 6월 11일 (목)<br/>Vol. 1
+    </div>
+  </div>
+  <h1>오늘의 AI 핵심 동향</h1>
+  <p>C-Level 전략 브리핑 | AI Strategy Team</p>
+</div>
+
+<!-- ════════════════════════════════ BODY ════════════════════════════════ -->
+<div class="container">
+
+  <!-- ① Executive Summary -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">⚡</div>
+      <span class="section-title">Executive Summary</span>
+      <span class="section-sub">오늘의 핵심 3가지</span>
+    </div>
+    <div class="exec-grid">
+      <div class="exec-card">
+        <div class="num">① 모델 경쟁</div>
+        <strong>Anthropic, Claude Fable 5 출시 — 1위 굳히기</strong>
+        <p>6월 9일 출시된 Fable 5는 Anthropic의 기업가치 $965B(약 1,300조 원) 돌파와 맞물려, OpenAI를 제치고 민간 AI 기업 시가총액 1위를 공식화하는 상징적 출시입니다.</p>
+      </div>
+      <div class="exec-card">
+        <div class="num">② 빅테크 자립화</div>
+        <strong>Microsoft, 자체 AI 모델 7종 동시 발표</strong>
+        <p>OpenAI 의존도를 낮추기 위해 추론·코딩·이미지·음성 전 영역에 걸쳐 MAI 패밀리를 출시. 엔터프라이즈 AI 공급망 재편의 신호탄입니다.</p>
+      </div>
+      <div class="exec-card">
+        <div class="num">③ 규제 현실화</div>
+        <strong>미국 연방·주 AI 규제, 6월 말부터 본격 시행</strong>
+        <p>콜로라도 포함 다수 주 법률이 6월 30일 발효되고, 백악관은 프런티어 모델 사전 심사 프레임워크를 발표. 컴플라이언스 비용이 현실화됩니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 주요 뉴스 헤드라인 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📰</div>
+      <span class="section-title">주요 뉴스 헤드라인</span>
+      <span class="section-sub">오늘의 핵심 뉴스 7선</span>
+    </div>
+    <div class="news-grid">
+
+      <div class="news-card">
+        <div class="news-meta">
+          <span class="news-tag">모델 출시</span>
+          <span class="news-source">Anthropic · 2026.06.09</span>
+        </div>
+        <h3>Anthropic, Claude Fable 5 정식 출시 — 업계 첫 Intelligence Index 1위</h3>
+        <p>Claude Opus 4.8이 Artificial Analysis Intelligence Index에서 61.4점(역대 최초 60점 돌파)으로 1위를 기록한 데 이어, 후속 모델 Fable 5가 6월 9일 출시됐습니다. 코딩, 에이전트 컴퓨터 사용, 실세계 경제 작업(GDPval-AA Elo 1,890)에서 모든 경쟁 모델을 앞섰습니다.</p>
+        <div class="implication"><strong>전략적 시사점:</strong> 우리 회사의 AI 파트너십·API 계약이 OpenAI 단일 의존으로 설계되어 있다면, Anthropic·Google 멀티벤더 전략으로의 전환을 검토할 시점입니다.</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-meta">
+          <span class="news-tag">빅테크 전략</span>
+          <span class="news-source">Microsoft AI · 2026.06.02</span>
+        </div>
+        <h3>Microsoft, MAI 모델 패밀리 7종 공개 — OpenAI 의존 탈피 선언</h3>
+        <p>MAI-Thinking-1(추론), MAI-Code-1-Flash(코딩·5B 파라미터), MAI-Image-2.5(이미지), MAI-Transcribe-1.5(43개 언어 전사), MAI-Voice-2(15개 언어 음성합성) 등을 한꺼번에 발표했습니다. MAI-Thinking-1은 인간 블라인드 평가에서 Claude Sonnet 4.6을 앞섰습니다.</p>
+        <div class="implication"><strong>전략적 시사점:</strong> Microsoft 365·Azure를 사용 중인 기업은 별도 API 계약 없이 MAI 모델을 기존 인프라에 통합할 수 있어 초기 도입 비용이 낮아집니다.</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-meta">
+          <span class="news-tag">투자·밸류에이션</span>
+          <span class="news-source">Crunchbase · 2026.06.01</span>
+        </div>
+        <h3>Q1 2026 글로벌 벤처 투자 $3,000억 돌파 — AI가 80% 차지</h3>
+        <p>OpenAI($1,220억), Anthropic($300억), xAI($200억), Waymo($160억) 4개사가 전체의 65%인 $1,880억을 흡수. AI 스타트업이 전체 VC 투자의 33%를 점유하며 사상 최대를 기록했습니다. 반면 ChatGPT 이전에 창업한 비AI 스타트업들은 밸류에이션 급락 중입니다.</p>
+        <div class="implication"><strong>전략적 시사점:</strong> AI 솔루션 공급사 선정 시 재무 안정성보다 기술 역량 중심으로 평가 기준을 재설계해야 합니다. 작은 스타트업도 거대 투자를 받을 수 있지만, 역으로 빠른 pivoting 위험도 있습니다.</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-meta">
+          <span class="news-tag">정책·규제</span>
+          <span class="news-source">White House · 2026.06.02</span>
+        </div>
+        <h3>백악관, AI 혁신·보안 촉진 행정명령 발동 — 프런티어 모델 사전 검토 의무화</h3>
+        <p>AI 개발사에게 출시 30일 전 연방 기관 접근권을 제공하는 자발적 검토 프레임워크를 수립했습니다. 강제 허가제는 아니지만, CISA 주도의 AI 사이버 방어 클리어링하우스 설립 등 인프라 보안 요건이 강화됩니다. 동시에 콜로라도주 고위험 AI 규제법이 6월 30일 발효 예정입니다.</p>
+        <div class="implication"><strong>전략적 시사점:</strong> AI를 인사·대출 심사 등 고위험 의사결정에 활용하는 기업은 6월 말 이전에 컴플라이언스 갭 분석을 완료해야 합니다.</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-meta">
+          <span class="news-tag">에이전트 AI</span>
+          <span class="news-source">Google Cloud · 2026.06</span>
+        </div>
+        <h3>Google I/O 2026: "Agentic Gemini Era" 선포 — 관리형 에이전트 API 출시</h3>
+        <p>Google은 Gemini 3.5와 멀티모달 신모델 Gemini Omnia(영상 포함 모든 입력에서 콘텐츠 생성)를 공개하고, Gemini API에 Managed Agents 기능을 추가했습니다. AI가 채팅에서 실제 작업 완수로 이동하는 전환점을 공식 선언한 것입니다.</p>
+        <div class="implication"><strong>전략적 시사점:</strong> 단순 챗봇·요약 도구를 넘어, 업무 프로세스에 직접 결합되는 에이전트형 AI 도입을 위한 내부 파일럿 설계를 지금 시작해야 합니다.</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-meta">
+          <span class="news-tag">기업 구조조정</span>
+          <span class="news-source">CNBC · 2026.06</span>
+        </div>
+        <h3>Meta, AI 집중을 위해 8,000명 감원 — 7,000명 AI팀 재배치</h3>
+        <p>Meta는 전직원의 약 10%인 8,000명을 정리해고하고, 별도로 7,000명을 AI 집중 부서로 재배치하는 대규모 조직 개편을 단행했습니다. 빅테크의 AI 중심 인력 재편이 가속화되고 있습니다.</p>
+        <div class="implication"><strong>전략적 시사점:</strong> AI 도입이 단순 효율화를 넘어 조직 구조 자체를 바꾸고 있습니다. 우리 회사도 AI 역량을 중심으로 한 팀 재설계 로드맵이 필요합니다.</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-meta">
+          <span class="news-tag">엔터프라이즈 도입</span>
+          <span class="news-source">Deloitte · 2026.06</span>
+        </div>
+        <h3>딜로이트 보고서: GenAI 파일럿의 95%가 P&L 임팩트 없음</h3>
+        <p>2026년 기업의 80% 이상이 GenAI를 테스트·배포했지만, P&L에 실질적 영향을 주는 경우는 5%에 불과합니다. 에이전트형 AI 도입률은 연말까지 5%→40%로 급증 예상되며, AI 스킬 격차가 최대 장벽으로 꼽혔습니다.</p>
+        <div class="implication"><strong>전략적 시사점:</strong> "파일럿 성공 = 사업 성과"라는 착각에서 벗어나, 도입 단계부터 P&L 연결 지표(KPI)를 설정하는 방식으로 AI 투자 거버넌스를 전환해야 합니다.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ③ 트렌드 분석 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📈</div>
+      <span class="section-title">트렌드 분석</span>
+      <span class="section-sub">이번 주 AI 산업의 3대 흐름</span>
+    </div>
+    <div class="trend-grid">
+      <div class="trend-card">
+        <div class="trend-label">Trend 1</div>
+        <h3>빅테크의 수직 통합 가속 — AI 공급망 자립화</h3>
+        <p class="evidence">📌 근거: Microsoft MAI 7종 동시 출시, Google 자체 Gemini 생태계 완성, Anthropic 독자 모델 1위 등극</p>
+        <div class="signal">🔮 <strong>향후 3~6개월 신호:</strong> OpenAI 독점 공급 구도가 무너지고 모델 선택지가 폭발적으로 늘어납니다. 기업 AI 조달 전략에 멀티벤더 경쟁 입찰 구조를 도입해야 합니다.</div>
+      </div>
+      <div class="trend-card">
+        <div class="trend-label">Trend 2</div>
+        <h3>에이전트 AI 전환 — 채팅에서 업무 자동화로</h3>
+        <p class="evidence">📌 근거: Google Managed Agents API, Anthropic 에이전트 고도화, 엔터프라이즈 에이전트 도입 5%→40% 전망</p>
+        <div class="signal">🔮 <strong>향후 3~6개월 신호:</strong> 에이전트가 연구·법무·코딩·결제 등 실제 워크플로우에 결합됩니다. 단순 SaaS 자동화를 넘어 AI 에이전트 오케스트레이션 역량이 기업 경쟁력이 됩니다.</div>
+      </div>
+      <div class="trend-card">
+        <div class="trend-label">Trend 3</div>
+        <h3>AI 규제 현실화 — 컴플라이언스 비용 본격화</h3>
+        <p class="evidence">📌 근거: 미국 주정부 AI법 6월 30일 발효, EU AI Act 풀 시행, 백악관 프런티어 모델 프레임워크</p>
+        <div class="signal">🔮 <strong>향후 3~6개월 신호:</strong> AI 컴플라이언스는 더 이상 법무팀 과제가 아니라 제품·기술 설계 단계에서 내재화해야 하는 요소입니다. 거버넌스 부재 시 벌금·평판 리스크가 현실화됩니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ 모델·기술 업데이트 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🤖</div>
+      <span class="section-title">모델·기술 업데이트</span>
+      <span class="section-sub">6월 1~11일 주요 출시</span>
+    </div>
+    <div class="tech-grid">
+
+      <div class="tech-card">
+        <div class="tech-logo">🟣</div>
+        <div>
+          <h3>Claude Fable 5</h3>
+          <div class="company">Anthropic · 2026.06.09</div>
+          <p>Anthropic의 최신 플래그십 모델. 직전 모델 Opus 4.8이 AI 벤치마크 종합 지수에서 역대 최초로 60점을 돌파해 1위를 기록한 가운데 출시됐습니다. 코딩·에이전트 자동화·실세계 경제적 작업에서 최강 성능을 보입니다.</p>
+          <span class="badge badge-hot">🔥 최신</span><span class="badge badge-new">벤치마크 1위</span>
+        </div>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-logo">🔵</div>
+        <div>
+          <h3>MAI 패밀리 (7종)</h3>
+          <div class="company">Microsoft AI · 2026.06.02</div>
+          <p>MAI-Thinking-1(추론 · 수학), MAI-Code-1-Flash(5B 경량 코딩, GitHub Copilot 통합), MAI-Image-2.5(이미지 생성·편집), MAI-Transcribe-1.5(43개 언어, 경쟁 대비 5배 빠름), MAI-Voice-2(15개 언어 자연 음성). 임원 관점에서는 "Azure 인프라 내에서 외부 API 없이 풀스택 AI 구현이 가능해졌다"는 의미입니다.</p>
+          <span class="badge badge-new">신규 패밀리</span><span class="badge badge-hot">OpenAI 대체</span>
+        </div>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-logo">🔴</div>
+        <div>
+          <h3>Gemini 3.5 / Gemini Omnia</h3>
+          <div class="company">Google · 2026.05~06</div>
+          <p>Gemini Omnia는 텍스트·이미지·영상·오디오 모든 입력에서 콘텐츠를 생성하는 진정한 멀티모달 모델. Managed Agents API와 결합해 "에이전트 시대"의 기반 인프라로 자리잡고 있습니다.</p>
+          <span class="badge badge-new">멀티모달</span><span class="badge badge-new">에이전트 API</span>
+        </div>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-logo">🟢</div>
+        <div>
+          <h3>DiffusionGemma 26B-A4B</h3>
+          <div class="company">Google · 2026.06.10</div>
+          <p>어제(6월 10일) 출시된 구글의 최신 오픈소스 이미지 생성 모델. 26B 파라미터 규모의 확산 모델로, 기업 내 온프레미스 이미지 생성 파이프라인 구축에 활용 가능합니다.</p>
+          <span class="badge badge-open">오픈소스</span><span class="badge badge-hot">어제 출시</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ⑤ 기업 동향 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🏢</div>
+      <span class="section-title">기업 동향</span>
+      <span class="section-sub">투자·전략·M&A</span>
+    </div>
+    <div class="market-grid">
+
+      <div class="market-card">
+        <div class="category">밸류에이션</div>
+        <h3>Anthropic, 민간 AI 기업 최초 $965B 돌파 — OpenAI 제쳐</h3>
+        <p>5월 말 $65B Series H 완료 후 기업가치가 $965B(약 1,330조 원)에 도달. 연간 매출 런레이트 $47B으로 OpenAI($24B+)를 앞질렀습니다.</p>
+        <div class="stat-row">
+          <div class="stat"><div class="val">$965B</div><div class="lbl">기업가치</div></div>
+          <div class="stat"><div class="val">$47B</div><div class="lbl">연간 매출(런레이트)</div></div>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <div class="category">IPO</div>
+        <h3>Cerebras (CBRS) IPO 성공 — AI 반도체 경쟁 본격화</h3>
+        <p>5월 14일 상장 첫날 +68% 급등, 최고 시가총액 $95B 기록. NVIDIA 대안으로 주목받으며 AI 추론 인프라 시장의 새로운 플레이어로 부상했습니다.</p>
+        <div class="stat-row">
+          <div class="stat"><div class="val">+68%</div><div class="lbl">상장 첫날 수익률</div></div>
+          <div class="stat"><div class="val">$95B</div><div class="lbl">최고 시총</div></div>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <div class="category">구조조정</div>
+        <h3>Meta, AI 집중 위해 8,000명 정리해고 단행</h3>
+        <p>전 직원의 10%를 감원하고 7,000명을 AI 전담 조직으로 재배치. 빅테크의 AI 중심 조직 재편이 인력 구조 변화로까지 이어지는 첫 대규모 사례입니다.</p>
+      </div>
+
+      <div class="market-card">
+        <div class="category">국제 협력</div>
+        <h3>미·일 AI 협력 확대, 영·캐나다 AI 컴퓨팅 협정 체결</h3>
+        <p>AI 컴퓨팅 접근권이 국가 경쟁력의 일부가 됐음을 공식화하는 양자 협정들. AI 인프라가 외교·안보 의제로 격상되고 있습니다.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ⑥ 전략적 시사점 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <span class="section-title">전략적 시사점</span>
+      <span class="section-sub">우리가 지금 주목해야 할 이유</span>
+    </div>
+    <div class="implication-list">
+
+      <div class="impl-item">
+        <div class="impl-num">1</div>
+        <div>
+          <h3>AI 벤더 포트폴리오를 지금 다각화해야 합니다</h3>
+          <p>OpenAI 단일 의존 구조는 Anthropic Fable 5·Microsoft MAI의 부상으로 협상력이 빠르게 약화됩니다. 지금 멀티벤더 전략을 설계하면 2~3년 후 계약 갱신 시 비용을 최대 30~40% 절감할 수 있는 구조를 만들 수 있습니다.</p>
+          <span class="urgency urgency-high">🔴 즉시 검토 필요</span>
+        </div>
+      </div>
+
+      <div class="impl-item">
+        <div class="impl-num">2</div>
+        <div>
+          <h3>에이전트 AI 파일럿을 "P&L 연결 기준"으로 재설계해야 합니다</h3>
+          <p>딜로이트 데이터에서 확인됐듯 95%의 파일럿이 사업 성과와 단절됩니다. 에이전트형 AI 도입이 연말까지 기업의 40%로 확산될 예정인 만큼, 우리 회사의 파일럿은 반드시 비용 절감·매출 증가·리스크 감소 중 하나의 KPI를 선행 정의해야 합니다.</p>
+          <span class="urgency urgency-high">🔴 즉시 검토 필요</span>
+        </div>
+      </div>
+
+      <div class="impl-item">
+        <div class="impl-num">3</div>
+        <div>
+          <h3>6월 30일 이전 AI 컴플라이언스 갭 분석을 완료해야 합니다</h3>
+          <p>콜로라도주 고위험 AI 규제법이 6월 30일 발효됩니다. 고용·금융·의료 등 고위험 영역에 AI를 적용 중이거나 계획 중이라면, 법무팀과 함께 현행 AI 시스템 목록(AI Inventory)을 작성하고 위험 등급을 분류하는 작업이 이 주 안에 시작돼야 합니다.</p>
+          <span class="urgency urgency-high">🔴 6월 30일 데드라인</span>
+        </div>
+      </div>
+
+      <div class="impl-item">
+        <div class="impl-num">4</div>
+        <div>
+          <h3>조직 내 AI 인재 재배치 계획을 수립해야 합니다</h3>
+          <p>Meta의 사례처럼 빅테크는 이미 AI 중심 인력 재편에 돌입했습니다. AI 스킬 갭이 도입의 최대 장벽인 만큼, 기존 직원의 AI 리스킬링 프로그램과 AI 전담 조직 설계를 HR과 협의해 로드맵화할 필요가 있습니다.</p>
+          <span class="urgency urgency-medium">🟡 단기(3개월) 내 착수</span>
+        </div>
+      </div>
+
+      <div class="impl-item">
+        <div class="impl-num">5</div>
+        <div>
+          <h3>온프레미스·오픈소스 AI 옵션을 사전 검토해야 합니다</h3>
+          <p>Google DiffusionGemma(어제 출시), MiniMax M3 등 오픈소스 고성능 모델이 빠르게 늘고 있습니다. 데이터 보안·비용 통제가 중요한 업무 영역에서는 클라우드 API 대신 온프레미스 배포가 전략적으로 유리한 경우가 늘고 있습니다.</p>
+          <span class="urgency urgency-low">🟢 중기(6개월) 검토</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ════════════════════════════════ FOOTER ════════════════════════════════ -->
+<div class="footer">
+  <p><strong>AI Daily Intelligence Report</strong> | 2026년 6월 11일 (목)</p>
+  <p style="margin-top:6px;">생성: Claude AI (Sonnet 4.6) · 수집 출처: Crunchbase, Microsoft AI, Anthropic, White House, Deloitte, LLM-Stats, Google Cloud</p>
+  <p style="margin-top:4px; font-size:11px;">본 리포트는 공개된 뉴스·보고서를 기반으로 AI가 자동 생성한 전략 브리핑입니다. 중요 의사결정 전 원문 확인을 권장합니다.</p>
+</div>
+
+</body>
+</html>
