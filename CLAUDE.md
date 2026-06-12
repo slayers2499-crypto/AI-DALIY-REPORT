@@ -37,3 +37,4 @@
 | 전체 개선 사이클 돌려줘 | `briefing-improver` |
 | 이슈 없을 때까지 개선해줘 | `auto-improve` |
 | 토큰 최적화해줘 | `token-optimizer` |
+| 팀으로 AI 리포트 만들어줘 | `team-report-generator` |
