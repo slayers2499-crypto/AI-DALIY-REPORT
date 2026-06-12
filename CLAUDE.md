@@ -33,16 +33,31 @@
 | 파일 | 모델 | 도구 | 역할 |
 |------|------|------|------|
 | `news-collector.md` | haiku | WebSearch, WebFetch | AI 뉴스 5개 키워드 병렬 수집 + 7개 기사 본문 추출 |
-| `report-writer.md` | sonnet | Write | 6섹션 C-레벨 HTML 리포트 작성 및 저장 |
-| `quality-checker.md` | haiku | Read, Grep | 7개 항목 체크리스트 검증 (PASS/FAIL) |
+| `report-writer.md` | sonnet | Write | 6섹션 C-레벨 HTML 리포트 작성·저장·재작성 |
+| `quality-checker.md` | haiku | Read, Grep | 7개 항목 정량 체크리스트 — 빠른 게이트 |
+| `rubric-evaluator.md` | sonnet | Read, Grep, Glob | 정성·정량 통합 루브릭 채점 (report/system 모드) |
 | `issue-auditor.md` | sonnet | Read, Grep, Glob, Bash | 문서·스킬·에이전트·보안·설정 감사 |
 
 ### 워크플로우 (`.claude/workflows/`)
 
 | 파일 | 트리거 | 파이프라인 |
 |------|--------|-----------|
-| `daily-report.js` | `팀으로 AI 리포트 만들어줘` | news-collector → report-writer → quality-checker |
-| `project-improve.js` | `프로젝트 개선해줘` | issue-auditor → resolver → doc-optimizer (최대 5회 반복) |
+| `daily-report.js` | `팀으로 AI 리포트 만들어줘` | news-collector → report-writer → quality-checker → **rubric-evaluator** → 점수 기록 |
+| `project-improve.js` | `프로젝트 개선해줘` | issue-auditor → resolver → doc-optimizer → **rubric-evaluator(system)** → 점수 기록 |
+
+### 루브릭 피드백 루프
+
+```
+quality-checker (정량 FAIL) ──→ report-writer 재작성
+rubric-evaluator (정성 REWRITE) ──→ report-writer 재작성 (최대 2회)
+rubric-evaluator (system) ──→ .claude/scores/rubric_log.jsonl 누적 기록
+```
+
+### 점수 추적
+
+- 파일: `.claude/scores/rubric_log.jsonl`
+- 리포트 점수: `전략적 통찰·C-레벨 실용성·정량 통과 여부` (최대 12점)
+- 시스템 점수: `하네스·신뢰성·문서·협업·관측가능성` (최대 20점)
 
 ### 에이전트 ↔ 스킬 연결
 
